@@ -36,8 +36,8 @@ def on_closing():
 # Membuat jendela utama
 root = tk.Tk()
 root.title("Kalkulator Sederhana")
-root.geometry("500x600")  # Ukuran jendela diperbesar
-root.resizable(False, False)
+root.geometry("300x400")  # Ukuran awal jendela
+root.resizable(True, True)  # Mengaktifkan resize
 
 # Menambahkan handler untuk event penutupan jendela
 root.protocol("WM_DELETE_WINDOW", on_closing)
@@ -64,8 +64,6 @@ for button_text in buttons:
             root,
             text=button_text,
             font=("Arial", 24, "bold"),
-            width=8,       # Lebar tombol diperbesar
-            height=2,      # Tinggi tombol diperbesar
             bg="#FFA500",  # Warna oranye untuk tombol operasi
             fg="white",    # Warna teks putih
             command=lambda x=button_text: on_button_click(x.replace("\u00F7", "/").replace("\u00D7", "*").replace("\u2212", "-").replace("\u002B", "+"))
@@ -75,8 +73,6 @@ for button_text in buttons:
             root,
             text=button_text,
             font=("Arial", 24, "bold"),
-            width=8,
-            height=2,
             bg="#4CAF50",  # Warna hijau untuk tombol sama dengan
             fg="white",
             command=lambda x=button_text: on_button_click(x)
@@ -86,8 +82,6 @@ for button_text in buttons:
             root,
             text=button_text,
             font=("Arial", 24, "bold"),
-            width=8,
-            height=2,
             bg="#F44336",  # Warna merah untuk tombol clear
             fg="white",
             command=lambda x=button_text: on_button_click(x)
@@ -97,8 +91,6 @@ for button_text in buttons:
             root,
             text=button_text,
             font=("Arial", 24),
-            width=8,
-            height=2,
             bg="#E0E0E0",  # Warna abu-abu muda untuk tombol angka
             command=lambda x=button_text: on_button_click(x)
         )
@@ -117,9 +109,9 @@ for button_text in buttons:
         row += 1
 
 # Konfigurasi grid agar tombol dapat menyesuaikan ukuran jendela
-for i in range(4):
+for i in range(4):  # 4 kolom
     root.grid_columnconfigure(i, weight=1)
-for i in range(5):
+for i in range(6):  # 6 baris (termasuk baris untuk kotak input)
     root.grid_rowconfigure(i, weight=1)
 
 # Menjalankan loop utama GUI
