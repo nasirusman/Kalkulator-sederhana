@@ -1,7 +1,11 @@
 import tkinter as tk
+import winsound  # Modul untuk memainkan suara di Windows
 
 # Fungsi untuk menangani tombol yang ditekan
 def on_button_click(value):
+    # Memainkan suara klik
+    winsound.Beep(1000, 100)  # Frekuensi 1000 Hz, durasi 100 ms
+
     if value == "=":
         try:
             result = eval(entry.get())  # Menghitung hasil ekspresi matematika
