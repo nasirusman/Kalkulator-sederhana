@@ -1,5 +1,6 @@
 import tkinter as tk
 import winsound  # Modul untuk memainkan suara di Windows
+from tkinter import messagebox  # Untuk menampilkan kotak dialog konfirmasi
 
 # Fungsi untuk menangani tombol yang ditekan
 def on_button_click(value):
@@ -27,11 +28,19 @@ def on_enter(event, button):
 def on_leave(event, button):
     button.config(bg=button.original_bg)  # Kembalikan ke warna asli
 
+# Fungsi untuk menangani konfirmasi penutupan jendela
+def on_closing():
+    if messagebox.askokcancel("Konfirmasi", "Apakah Anda yakin ingin menutup aplikasi?"):
+        root.destroy()  # Menutup jendela jika pengguna mengonfirmasi
+
 # Membuat jendela utama
 root = tk.Tk()
 root.title("Kalkulator Sederhana")
 root.geometry("500x600")  # Ukuran jendela diperbesar
 root.resizable(False, False)
+
+# Menambahkan handler untuk event penutupan jendela
+root.protocol("WM_DELETE_WINDOW", on_closing)
 
 # Kotak input untuk menampilkan angka dan hasil
 entry = tk.Entry(root, font=("Arial", 30), justify="right", bd=10, relief="ridge")
